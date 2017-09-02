@@ -24,23 +24,23 @@
  * temperature.cpp - temperature control
  */
 
-#include "Marlin.h"
 #include "temperature.h"
-#include "thermistortables.h"
-#include "ultralcd.h"
-#include "planner.h"
-#include "language.h"
+
+#include "../Marlin.h"
+#include "../lcd/ultralcd.h"
+#include "../module/planner.h"
+#include "../core/language.h"
 
 #if ENABLED(HEATER_0_USES_MAX6675)
-  #include "private_spi.h"
+  #include "../libs/private_spi.h"
 #endif
 
 #if ENABLED(BABYSTEPPING)
-  #include "stepper.h"
+  #include "../module/stepper.h"
 #endif
 
 #if ENABLED(ENDSTOP_INTERRUPTS_FEATURE)
-  #include "endstops.h"
+  #include "../module/endstops.h"
 #endif
 
 #ifdef K1 // Defined in Configuration.h in the PID settings
