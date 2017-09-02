@@ -243,42 +243,40 @@
 
 #include "Marlin.h"
 
-#include "ultralcd.h"
-#include "planner.h"
-#include "stepper.h"
-#include "endstops.h"
-#include "temperature.h"
-#include "cardreader.h"
-#include "configuration_store.h"
-#include "language.h"
+#include "lcd/ultralcd.h"
+#include "module/planner.h"
+#include "module/stepper.h"
+#include "module/endstops.h"
+#include "module/temperature.h"
+#include "sd/cardreader.h"
+#include "module/configuration_store.h"
 #ifdef ARDUINO
-  #include "pins_arduino.h"
+  #include <pins_arduino.h>
 #endif
-#include "math.h"
-#include "nozzle.h"
-#include "duration_t.h"
-#include "types.h"
-#include "gcode.h"
+#include <math.h>
+#include "libs/nozzle.h"
+#include "libs/duration_t.h"
+#include "gcode/gcode.h"
 
 #if HAS_ABL
-  #include "vector_3.h"
+  #include "libs/vector_3.h"
   #if ENABLED(AUTO_BED_LEVELING_LINEAR)
-    #include "least_squares_fit.h"
+    #include "libs/least_squares_fit.h"
   #endif
 #elif ENABLED(MESH_BED_LEVELING)
-  #include "mesh_bed_leveling.h"
+  #include "feature/mbl/mesh_bed_leveling.h"
 #endif
 
 #if ENABLED(BEZIER_CURVE_SUPPORT)
-  #include "planner_bezier.h"
+  #include "module/planner_bezier.h"
 #endif
 
 #if HAS_BUZZER && DISABLED(LCD_USE_I2C_BUZZER)
-  #include "buzzer.h"
+  #include "libs/buzzer.h"
 #endif
 
 #if ENABLED(MAX7219_DEBUG)
-  #include "Max7219_Debug_LEDs.h"
+  #include "libs/Max7219_Debug_LEDs.h"
 #endif
 
 #if ENABLED(NEOPIXEL_RGBW_LED)
@@ -286,16 +284,16 @@
 #endif
 
 #if ENABLED(BLINKM)
-  #include "blinkm.h"
+  #include "libs/blinkm.h"
   #include "Wire.h"
 #endif
 
 #if ENABLED(PCA9632)
-  #include "pca9632.h"
+  #include "libs/pca9632.h"
 #endif
 
 #if HAS_SERVOS
-  #include "src/HAL/servo.h"
+  #include "HAL/servo.h"
 #endif
 
 #if HAS_DIGIPOTSS
@@ -303,19 +301,19 @@
 #endif
 
 #if ENABLED(DAC_STEPPER_CURRENT)
-  #include "stepper_dac.h"
+  #include "libs/stepper_dac.h"
 #endif
 
 #if ENABLED(EXPERIMENTAL_I2CBUS)
-  #include "twibus.h"
+  #include "libs/twibus.h"
 #endif
 
 #if ENABLED(I2C_POSITION_ENCODERS)
-  #include "I2CPositionEncoder.h"
+  #include "libs/I2CPositionEncoder.h"
 #endif
 
 #if ENABLED(ENDSTOP_INTERRUPTS_FEATURE)
-  #include "src/HAL/HAL_endstop_interrupts.h"
+  #include "HAL/HAL_endstop_interrupts.h"
 #endif
 
 #if ENABLED(M100_FREE_MEMORY_WATCHER)
@@ -337,7 +335,7 @@
 #endif
 
 #if ENABLED(AUTO_BED_LEVELING_UBL)
-  #include "ubl.h"
+  #include "feature/ubl/ubl.h"
   extern bool defer_return_to_status;
   unified_bed_leveling ubl;
   #define UBL_MESH_VALID !( ( ubl.z_values[0][0] == ubl.z_values[0][1] && ubl.z_values[0][1] == ubl.z_values[0][2] \
@@ -1204,7 +1202,7 @@ inline void get_serial_commands() {
     static bool stop_buffering = false,
                 sd_comment_mode = false;
 
-    if (!card.sdprinting) return;
+    if (!IS_SD_PRINTING) return;
 
     /**
      * '#' stops reading from SD to the buffer prematurely, so procedural
@@ -6173,7 +6171,7 @@ inline void gcode_M17() {
 
     // Pause the print job and timer
     #if ENABLED(SDSUPPORT)
-      if (card.sdprinting) {
+      if (IS_SD_PRINTING) {
         card.pauseSDPrint();
         sd_print_paused = true;
       }
@@ -6520,7 +6518,7 @@ inline void gcode_M31() {
    * M32: Select file and start SD Print
    */
   inline void gcode_M32() {
-    if (card.sdprinting)
+    if (IS_SD_PRINTING)
       stepper.synchronize();
 
     char* namestartpos = parser.string_arg;
@@ -6632,7 +6630,7 @@ inline void gcode_M42() {
 
 #if ENABLED(PINS_DEBUGGING)
 
-  #include "pinsDebug.h"
+  #include "pins/pinsDebug.h"
 
   inline void toggle_pins() {
     const bool I_flag = parser.boolval('I');

@@ -25,25 +25,20 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <inttypes.h>
 
-#include "MarlinConfig.h"
+#include "inc/MarlinConfig.h"
 
 #ifdef DEBUG_GCODE_PARSER
-  #include "gcode.h"
+  #include "gcode/gcode.h"
 #endif
-#include "src/HAL/HAL.h"
 
-#include "enum.h"
-#include "types.h"
-#include "utility.h"
-#include "serial.h"
+#include "core/utility.h"
+#include "core/serial.h"
 
 #if ENABLED(PRINTCOUNTER)
-  #include "printcounter.h"
+  #include "module/printcounter.h"
 #else
-  #include "stopwatch.h"
+  #include "libs/stopwatch.h"
 #endif
 
 void idle(
