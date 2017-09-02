@@ -26,8 +26,12 @@
 
 #include "gcode.h"
 
-#include "Marlin.h"
-#include "language.h"
+#include "../Marlin.h"
+
+#if ENABLED(DEBUG_GCODE_PARSER)
+  #include "../../libs/hex_print_routines.h"
+  #include "../core/serial.h"
+#endif
 
 // Must be declared for allocation and to satisfy the linker
 // Zero values need no initialization.

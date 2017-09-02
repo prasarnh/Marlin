@@ -48,9 +48,13 @@
 #define M100_FREE_MEMORY_DUMPER     // Enable for the `M110 D` Dump sub-command
 #define M100_FREE_MEMORY_CORRUPTOR  // Enable for the `M100 C` Corrupt sub-command
 
-#include "MarlinConfig.h"
+#include "../../inc/MarlinConfig.h"
 
 #if ENABLED(M100_FREE_MEMORY_WATCHER)
+
+#include "../../Marlin.h"
+#include "../../gcode/gcode.h"
+#include "../../libs/hex_print_routines.h"
 
 #define TEST_BYTE ((char) 0xE5)
 
@@ -59,10 +63,6 @@ extern char command_queue[BUFSIZE][MAX_CMD_SIZE];
 extern char* __brkval;
 extern size_t  __heap_start, __heap_end, __flp;
 extern char __bss_end;
-
-#include "Marlin.h"
-#include "gcode.h"
-#include "hex_print_routines.h"
 
 //
 // Utility functions
@@ -329,5 +329,3 @@ int check_for_free_memory_corruption(const char * const title) {
 }
 
 #endif // M100_FREE_MEMORY_WATCHER
-
-

@@ -29,19 +29,12 @@
 #ifndef GCODE_H
 #define GCODE_H
 
-#include "enum.h"
-#include "types.h"
-#include "MarlinConfig.h"
+#include "../inc/MarlinConfig.h"
 
 //#define DEBUG_GCODE_PARSER
 
 #if ENABLED(DEBUG_GCODE_PARSER)
-  #if ENABLED(AUTO_BED_LEVELING_UBL)
-    extern char* hex_address(const void * const w);
-  #else
-    #include "hex_print_routines.h"
-  #endif
-  #include "serial.h"
+  #include "../core/serial.h"
 #endif
 
 #if ENABLED(INCH_MODE_SUPPORT)
