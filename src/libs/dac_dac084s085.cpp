@@ -3,11 +3,15 @@
  * External DAC for Alligator Board
  *
  ****************************************************************/
-#include "Marlin.h"
+
+#include "../inc/MarlinConfig.h"
 
 #if MB(ALLIGATOR)
-  #include "stepper.h"
+
   #include "dac_dac084s085.h"
+
+  #include "../Marlin.h"
+  #include "../module/stepper.h"
 
   dac084s085::dac084s085() {
     return ;

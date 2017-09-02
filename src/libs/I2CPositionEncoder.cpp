@@ -28,18 +28,18 @@
 //todo:    consider Marlin-optimized Wire library; i.e. MarlinWire, like MarlinSerial
 
 
-#include "MarlinConfig.h"
+#include "../inc/MarlinConfig.h"
 
 #if ENABLED(I2C_POSITION_ENCODERS)
 
-  #include "Marlin.h"
-  #include "temperature.h"
-  #include "stepper.h"
   #include "I2CPositionEncoder.h"
-  #include "gcode.h"
+
+  #include "../module/temperature.h"
+  #include "../core/serial.h"
+  #include "../module/stepper.h"
+  #include "../gcode/gcode.h"
 
   #include <Wire.h>
-
 
   void I2CPositionEncoder::init(const uint8_t address, const AxisEnum axis) {
     encoderAxis = axis;

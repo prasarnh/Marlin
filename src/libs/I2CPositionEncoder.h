@@ -23,13 +23,13 @@
 #ifndef I2CPOSENC_H
 #define I2CPOSENC_H
 
-#include "MarlinConfig.h"
+#include "../inc/MarlinConfig.h"
 
 #if ENABLED(I2C_POSITION_ENCODERS)
 
-  #include "enum.h"
-  #include "macros.h"
-  #include "types.h"
+  #include "../core/serial.h"
+  #include "../module/planner.h"
+
   #include <Wire.h>
 
   //=========== Advanced / Less-Common Encoder Configuration Settings ==========
