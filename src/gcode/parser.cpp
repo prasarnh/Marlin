@@ -24,7 +24,7 @@
  * gcode.cpp - Parser for a GCode line, providing a parameter interface.
  */
 
-#include "gcode.h"
+#include "parser.h"
 
 #include "../Marlin.h"
 

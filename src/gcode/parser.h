@@ -21,7 +21,7 @@
  */
 
 /**
- * gcode.h - Parser for a GCode line, providing a parameter interface.
+ * parser.h - Parser for a GCode line, providing a parameter interface.
  *           Codes like M149 control the way the GCode parser behaves,
  *           so settings for these codes are located in this class.
  */

@@ -32,7 +32,7 @@
   #include "../../lcd/ultralcd.h"
   #include "../../module/stepper.h"
   #include "../../module/planner.h"
-  #include "../../gcode/gcode.h"
+  #include "../../gcode/parser.h"
   #include "../../libs/least_squares_fit.h"
 
   #include <math.h>

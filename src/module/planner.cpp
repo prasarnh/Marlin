@@ -64,7 +64,7 @@
 #include "../lcd/ultralcd.h"
 #include "../core/language.h"
 #include "../feature/ubl/ubl.h"
-#include "../gcode/gcode.h"
+#include "../gcode/parser.h"
 
 #include "../Marlin.h"
 

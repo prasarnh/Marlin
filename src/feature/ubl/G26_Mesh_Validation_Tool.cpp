@@ -35,7 +35,7 @@
   #include "../../module/stepper.h"
   #include "../../module/temperature.h"
   #include "../../lcd/ultralcd.h"
-  #include "../../gcode/gcode.h"
+  #include "../../gcode/parser.h"
 
   #define EXTRUSION_MULTIPLIER 1.0
   #define RETRACTION_MULTIPLIER 1.0

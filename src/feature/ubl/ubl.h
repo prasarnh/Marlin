@@ -398,11 +398,5 @@
 
   extern unified_bed_leveling ubl;
 
-  #if ENABLED(UBL_G26_MESH_VALIDATION)
-    FORCE_INLINE void gcode_G26() { ubl.G26(); }
-  #endif
-
-  FORCE_INLINE void gcode_G29() { ubl.G29(); }
-
 #endif // AUTO_BED_LEVELING_UBL
 #endif // UNIFIED_BED_LEVELING_H

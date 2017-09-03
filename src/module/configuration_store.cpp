@@ -186,7 +186,7 @@ MarlinSettings settings;
 #include "../Marlin.h"
 
 #if ENABLED(INCH_MODE_SUPPORT) || (ENABLED(ULTIPANEL) && ENABLED(TEMPERATURE_UNITS_SUPPORT))
-  #include "../gcode/gcode.h"
+  #include "../gcode/parser.h"
 #endif
 
 #if ENABLED(MESH_BED_LEVELING)

@@ -37,7 +37,7 @@
   #include "../module/temperature.h"
   #include "../core/serial.h"
   #include "../module/stepper.h"
-  #include "../gcode/gcode.h"
+  #include "../gcode/parser.h"
 
   #include <Wire.h>
 
