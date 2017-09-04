@@ -46,6 +46,6 @@ else:
           "--specs=nano.specs",
           "--specs=nosys.specs",
           "-u_printf_float",
-          "-Wl,-TMarlin/HAL/frameworks/CMSIS/LPC1768/Re-ARM/LPC1768.ld,--gc-sections"
+          "-Wl,-Tsrc/HAL/frameworks/CMSIS/LPC1768/Re-ARM/LPC1768.ld,--gc-sections"
       ],
   )
