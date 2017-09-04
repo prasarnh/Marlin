@@ -10,7 +10,7 @@ notifications:
 
 # Cache PlatformIO packages using Travis CI container-based infrastructure
 sudo: false
-cache: 
+cache:
   pip: true
   directories:
   - "~/.platformio"
@@ -25,7 +25,7 @@ before_install:
   #
   # Publish the buildroot script folder
   - chmod +x ${TRAVIS_BUILD_DIR}/buildroot/bin/*
-  - export PATH=${TRAVIS_BUILD_DIR}/buildroot/bin/:${PATH} 
+  - export PATH=${TRAVIS_BUILD_DIR}/buildroot/bin/:${PATH}
 
 install:
   - pip install -U platformio
@@ -36,16 +36,16 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}
   #
   # Generate custom version include
-  - generate_version_header_for_marlin ${TRAVIS_BUILD_DIR}/src/inc
-  - cat ${TRAVIS_BUILD_DIR}/src/inc/_Version.h
+  - generate_version_header_for_marlin ${TRAVIS_BUILD_DIR}/Marlin/src/inc
+  - cat ${TRAVIS_BUILD_DIR}/Marlin/src/inc/_Version.h
   #
 script:
   #
   # Backup Configuration.h, Configuration_adv.h, and pins_RAMPS.h
   #
-  - cp src/config/Configuration.h src/config/Configuration.h.backup
-  - cp src/config/Configuration_adv.h src/config/Configuration_adv.h.backup
-  - cp src/pins/pins_RAMPS.h src/pins/pins_RAMPS.h.backup
+  - cp Marlin/src/config/Configuration.h Marlin/src/config/Configuration.h.backup
+  - cp Marlin/src/config/Configuration_adv.h Marlin/src/config/Configuration_adv.h.backup
+  - cp Marlin/src/pins/pins_RAMPS.h Marlin/src/pins/pins_RAMPS.h.backup
   #
   # Build with the default configurations
   #
@@ -334,9 +334,9 @@ script:
   - export TEST_PLATFORM="-e teensy35"
   - restore_configs
   - opt_set MOTHERBOARD BOARD_TEENSY35_36
-  - cp src/config/Configuration.h src/config/Configuration.h.backup
-  - cp src/config/Configuration_adv.h src/config/Configuration_adv.h.backup
-  - cp src/pins/pins_RAMPS.h src/pins/pins_RAMPS.h.backup
+  - cp Marlin/src/config/Configuration.h Marlin/src/config/Configuration.h.backup
+  - cp Marlin/src/config/Configuration_adv.h Marlin/src/config/Configuration_adv.h.backup
+  - cp Marlin/src/pins/pins_RAMPS.h Marlin/src/pins/pins_RAMPS.h.backup
   #
   # Test Teensy3.5 with default config
   #
