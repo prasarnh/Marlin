@@ -43,6 +43,7 @@ constexpr int8_t LPC1768_PIN_ADC(const pin_t pin) { return (int8_t)((pin >> 8) &
 // ******************
 // Runtime pinmapping
 // ******************
+#define P_NC -1
 #if SERIAL_PORT != 3
   const pin_t P0_0  = LPC1768_PIN(0,  0, PIN_FEATURE_INTERRUPT);
   const pin_t P0_1  = LPC1768_PIN(0,  1, PIN_FEATURE_INTERRUPT);
@@ -163,7 +164,7 @@ constexpr bool INTERRUPT_PIN(const pin_t p) {
   #define NUM_ANALOG_INPUTS 8
 #endif
 
-constexpr pin_t adc_pin_table[] = { 
+constexpr pin_t adc_pin_table[] = {
   P0_23, P0_24, P0_25, P0_26, P1_30, P1_31,
   #if SERIAL_PORT != 0
     P0_3, P0_2
@@ -171,7 +172,7 @@ constexpr pin_t adc_pin_table[] = {
 };
 
 constexpr pin_t analogInputToDigitalPin(const uint8_t p) {
-  return (p < COUNT(adc_pin_table) ? adc_pin_table[p] : -1);
+  return (p < COUNT(adc_pin_table) ? adc_pin_table[p] : P_NC);
 }
 
 constexpr int8_t DIGITAL_PIN_TO_ANALOG_PIN(const pin_t p) {
@@ -214,5 +215,5 @@ const pin_t pin_map[] = {
 
 int16_t GET_PIN_MAP_INDEX(pin_t pin);
 int16_t PARSED_PIN_INDEX(char code, int16_t dval = 0);
-                           
+
 #endif // __HAL_PINMAPPING_H__

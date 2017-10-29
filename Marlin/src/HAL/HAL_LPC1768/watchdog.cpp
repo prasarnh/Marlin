@@ -43,7 +43,7 @@ uint8_t HAL_get_reset_source(void) {
 
 void watchdog_reset() {
   WDT_Feed();
-  TOGGLE(13); // heart beat indicator on Pin13
+  TOGGLE(LED_PIN); // heart beat indicator on Pin13
 }
 
 #endif // TARGET_LPC1768
